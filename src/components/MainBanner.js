@@ -1,12 +1,31 @@
-import React from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import React, { useRef } from "react";
 import { ReactTyped } from "react-typed";
 
 const MainBanner = () => {
+  const useBox = useRef();
+  useGSAP(() => {
+    gsap.fromTo(
+      useBox.current,
+      { scale: 0.5, opacity: 0 },
+      {
+     
+        scale: 1,
+        rotate: 0,
+        opacity: 1,
+        duration: 2,
+       ease: "bounce.inout",
+        delay: 0.5,
+    
+ 
+      }
+    );
+  });
   return (
-    <div className="bg-[#212428] text-white min-h-screen flex items-center">
+    <div className="bg-[#212428] text-white min-h-screen flex items-center overflow-x-hidden">
       <div className="container mx-auto px-6 ">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          
           {/* Left Section */}
           <div className="space-y-4 sm:space-y-6 text-center md:text-left">
             <p className="text-md sm:text-lg text-gray-400">Hi, I am</p>
@@ -27,11 +46,12 @@ const MainBanner = () => {
           </div>
 
           {/* Right Section */}
-          <div className="flex justify-center md:justify-end">
+          <div className="flex justify-center md:justify-end ">
             <img
               src="assets/kartik.png"
               alt="Kartik Bhosale"
-              className="max-w-xs sm:max-w-sm md:max-w-md h-auto rounded-lg shadow-2xl p-2"
+              className="max-w-xs sm:max-w-sm md:max-w-md h-auto  p-2"
+              ref={useBox}
             />
           </div>
         </div>

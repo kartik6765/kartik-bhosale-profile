@@ -1,7 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
 
 const Nav = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navItems = useRef([]);
+  const addToRefs = (el) => {
+    if (el && !navItems.current.includes(el)) {
+      navItems.current.push(el);
+    }
+  };
+
+  useEffect(() => {
+    if (navItems.current.length > 0) {
+      gsap.fromTo(
+        navItems.current,
+        { y: -50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.2, 
+          ease: "power3.out",
+        }
+      );
+    }
+  }, []);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -63,6 +86,7 @@ const Nav = () => {
                 <div className="flex space-x-4">
                   <a
                     href="/"
+                    ref={addToRefs}
                     className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
                     aria-current="page"
                   >
@@ -70,18 +94,21 @@ const Nav = () => {
                   </a>
                   <a
                     href="/"
+                    ref={addToRefs}
                     className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                   >
                     About
                   </a>
                   <a
                     href="/"
+                    ref={addToRefs}
                     className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                   >
                     Resume
                   </a>
                   <a
                     href="/"
+                    ref={addToRefs}
                     className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                   >
                     Contact
