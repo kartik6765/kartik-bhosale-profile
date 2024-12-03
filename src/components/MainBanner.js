@@ -80,7 +80,7 @@ gsap.fromTo(
           {/* Right Section */}
           <div className="flex justify-center md:justify-end ">
             <img
-              src="assets/kartik.png"
+              src="assets/kartik_bg.png"
               alt="Kartik Bhosale"
               className="max-w-xs sm:max-w-sm md:max-w-md h-auto  p-2"
               ref={useBox}
